@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Delete,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
 
@@ -10,7 +18,10 @@ export class TasksController {
   async findAll(): Promise<Task[]> {
     return this.tasksService.findAll();
   }
-
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.tasksService.findOne(id);
+  }
   @Post()
   async create(@Body() task: Task): Promise<Task> {
     return this.tasksService.create(task);
@@ -21,4 +32,3 @@ export class TasksController {
     return this.tasksService.remove(+id);
   }
 }
-
