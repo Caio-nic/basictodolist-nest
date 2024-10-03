@@ -5,7 +5,7 @@ import { TasksController } from './tasks.controller';
 import { Task } from './task.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Task])], // Registra o repositório Task
+  imports: [TypeOrmModule.forFeature([Task])],
   providers: [TasksService],
   controllers: [TasksController],
 })
